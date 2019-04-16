@@ -1,0 +1,80 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container>* {
+  width: 100%;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 100%;
+}
+
+.icon {
+  margin-left: 3rem;
+}
+
+.mat-card {
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  max-width: 600px;
+  min-width: 300px;
+  width: 350px;
+}
+
+.mat-card[_ngcontent-c1] {
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  max-width: 600px;
+  min-width: 300px;
+  width: 350px;
+  margin-left: 34%;
+  margin-top: 1px;
+}
+
+.mat-card[_ngcontent-c2] {
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  display: block;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  max-width: 600px;
+  min-width: 300px;
+  width: 350px;
+  margin-left: 29em;
+}
+
+.forgotPassword {
+  color: azure;
+  float: right;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 300px) {
+  .forgotPassword {
+    color: azure;
+    display: block;
+    float: none;
+    text-decoration: none;
+  }
+}

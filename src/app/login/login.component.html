@@ -1,0 +1,63 @@
+<div>
+  <form #loginForm="ngForm" novalidate>
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-card class="example-card">
+      <mat-card-header style="display: grid;">
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-header>
+        <!-- <img src="../../assets/img/User.png" height="100px" width="100px" /> -->
+        <mat-icon style="margin:auto;font-size: 100px">account_circle</mat-icon>
+      </mat-card-header>
+      <br />
+      <br />
+      <br />
+      <br />
+      <mat-card-content>
+        <mat-grid-list cols="1" row="2" rowHeight="70px" gutterSize="5px">
+          <mat-grid-tile>
+            <mat-icon prefix class="icon">email </mat-icon>
+            <mat-form-field class="form">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="applogin.userName" id="email" name="email" type="email" placeholder="Email"
+                #email="ngModel" required email />
+              <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                <mat-error *ngIf="email.errors.required"> Email is Required</mat-error>
+                <mat-error *ngIf="email.errors.email">Email must be a valid email address</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-icon prefix class="icon">lock</mat-icon>
+            <mat-form-field class="form">
+              <mat-label>Password</mat-label>
+              <input matInput [(ngModel)]="applogin.password" id="password" name="password" type="password"
+                placeholder="Password" #password="ngModel" required showHideInput appBlock />
+              <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+                <mat-error *ngIf="password.errors.required"> password is Required</mat-error>
+              </mat-error>
+              <i matSuffix class="material-icons" showHideTrigger="password"
+                [showHideStatus]="{ materialIcon: true, id: 'password' }" style="cursor:pointer"></i>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+        <a routerLink="/forgotPassword" class="forgotPassword">Forgot Password?</a>
+      </mat-card-content>
+      <mat-checkbox style="padding-right: 150px" [(ngModel)]="applogin.rememberMe" id="rememberMe" name="rememberMe"
+        #rememberMe="ngModel">Keep Me Logged In</mat-checkbox>
+      <br />
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="login(applogin)" [disabled]="loginForm.invalid"
+          style="width:110px">Login</button>
+      </mat-card-actions>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <button mat-raised-button style="width:110px;background-color: crimson" (click)="signUp()">SignUp</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

@@ -1,0 +1,85 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Products</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<br />
+<div class="example-loading-shade" *ngIf="isLoadingResults">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<div>
+  <mat-grid-list cols="2" row="1" rowHeight="50px">
+    <button mat-raised-button Style="background-color:green;float: left;margin-left: 133px" (click)="openDialog()">Add
+      Product</button>
+    <button mat-raised-button Style="background-color:crimson;float: right;margin-right: 134px;"
+      (click)="logOut()">LogOut</button>
+  </mat-grid-list>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- <ng-container matColumnDef="productImage">
+    <th mat-header-cell *matHeaderCellDef> ProductImage </th>
+    <td mat-cell *matCellDef="let products"> {{products.productImage}} </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="productId">
+    <th mat-header-cell *matHeaderCellDef> ProductId </th>
+    <td mat-cell *matCellDef="let products" matTooltip="Click For more Product Info"><a
+        routerLink="/productDetails/{{products.productId}}" style="color:deeppink">{{products.productId}}
+      </a></td>
+  </ng-container>
+
+  <ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef> ProductName </th>
+    <td mat-cell *matCellDef="let products">
+      <span *ngIf="!editCache[products.key].edit">{{products.productName}}</span>
+      <mat-form-field floatLabel="never" *ngIf="editCache[products.key].edit">
+        <input matInput placeholder="ProductName" [value]="editCache[products.key].products.productName"
+          [(ngModel)]="editCache[products.key].products.productName">
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="productModel">
+    <th mat-header-cell *matHeaderCellDef> ProductModel </th>
+    <td mat-cell *matCellDef="let products">
+      <span *ngIf="!editCache[products.key].edit">{{products.productModel}}</span>
+      <mat-form-field floatLabel="never" *ngIf="editCache[products.key].edit">
+        <input matInput placeholder="productModel" [value]="editCache[products.key].products.productModel"
+          [(ngModel)]="editCache[products.key].products.productModel" />
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="productRating">
+    <th mat-header-cell *matHeaderCellDef> ProductRating </th>
+    <td mat-cell *matCellDef="let products">
+      <span *ngIf="!editCache[products.key].edit">{{products.productRating}}</span>
+      <mat-form-field floatLabel="never" *ngIf="editCache[products.key].edit">
+        <input matInput placeholder="productRating" [value]="editCache[products.key].products.productRating"
+          [(ngModel)]="editCache[products.key].products.productRating">
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef colspan="2"> Action </th>
+    <td mat-cell *matCellDef="let products">
+      <button mat-raised-button Style="background-color: blue" (click)="startEdit(products.key)"
+        *ngIf="!editCache[products.key].edit">Edit</button>
+      <button mat-raised-button Style="background-color: blue"
+        (click)="updateProductDetails(editCache[products.key].products)"
+        *ngIf="editCache[products.key].edit">Update</button>
+      |
+      <!-- <button mat-raised-button Style="background-color:crimson" (click)="deleteProduct(products)"
+        *ngIf="!editCache[products.key].edit">Delete</button> -->
+      <button mat-raised-button Style="background-color:crimson" (click)="openDeleteDialog(products)"
+        *ngIf="!editCache[products.key].edit">Delete</button>
+      <button mat-raised-button Style="background-color:crimson" (click)="cancelEdit(products.key)"
+        *ngIf="editCache[products.key].edit">Cancel</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

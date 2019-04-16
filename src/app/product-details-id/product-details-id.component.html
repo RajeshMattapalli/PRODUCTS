@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Product Details</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<br />
+<mat-card class="example-card" style="width: 30%;" *ngIf="product">
+  <mat-card-header>
+    <mat-card-title>{{ product.productModel | uppercase}} Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="2" row="1" rowHeight="30px" gutterSize="5px">
+      <mat-grid-tile>ProductId:</mat-grid-tile>
+      <mat-grid-tile>{{product.productId}} </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="2" row="1" rowHeight="30px" gutterSize="5px">
+      <mat-grid-tile>ProductName:</mat-grid-tile>
+      <mat-grid-tile>{{product.productName}} </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="2" row="1" rowHeight="30px" gutterSize="5px">
+      <mat-grid-tile>ProductModel:</mat-grid-tile>
+      <mat-grid-tile>{{product.productModel}} </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="2" row="1" rowHeight="30px" gutterSize="5px">
+      <mat-grid-tile>ProductRating:</mat-grid-tile>
+      <mat-grid-tile>{{product.productRating}} </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+
+<mat-card-actions>
+  <button mat-raised-button color="primary" (click)="back()" style="width:110px">Back</button>
+</mat-card-actions>

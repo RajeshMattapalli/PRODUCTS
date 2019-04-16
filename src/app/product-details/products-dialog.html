@@ -1,0 +1,49 @@
+<h1 mat-dialog-title style="text-align: center;color:inherit">Add Product</h1>
+<mat-divider></mat-divider>
+<form #addProductForm="ngForm" novalidate>
+  <div mat-dialog-content>
+    <mat-grid-list cols="1" row="4" rowHeight="70px" gutterSize="5px">
+      <mat-grid-tile>
+        <mat-form-field style="width: 100%;">
+          <input matInput id="productId" name="productId" placeholder="productId" [(ngModel)]="data.productId"
+            #productId="ngModel" required />
+          <mat-error *ngIf="productId.invalid && (productId.dirty || productId.touched)">
+            <mat-error *ngIf="productId.errors.required"> productId is Required</mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field style="width: 100%;">
+          <input matInput id="productName" name="productName" placeholder="productName" [(ngModel)]="data.productName"
+            #productName="ngModel" required />
+          <mat-error *ngIf="productName.invalid && (productName.dirty || productName.touched)">
+            <mat-error *ngIf="productName.errors.required"> productName is Required</mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field style="width: 100%;">
+          <input matInput id="productModel" name="productModel" placeholder="productModel"
+            [(ngModel)]="data.productModel" #productModel="ngModel" required />
+          <mat-error *ngIf="productModel.invalid && (productModel.dirty || productModel.touched)">
+            <mat-error *ngIf="productModel.errors.required"> productModel is Required</mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field style="width: 100%;">
+          <input matInput id="productRating" name="productRating" placeholder="productRating"
+            [(ngModel)]="data.productRating" #productRating="ngModel" required />
+          <mat-error *ngIf="productRating.invalid && (productRating.dirty || productRating.touched)">
+            <mat-error *ngIf="productRating.errors.required"> productRating is Required</mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data" style=" background-color:blue" [disabled]="addProductForm.invalid"
+      (click)="sendData(data)" cdkFocusInitial>Save</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </div>
+</form>
